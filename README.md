@@ -1,2 +1,2 @@
-* This website is based on
+# tutoriel.dev #
 * [x] https://github.com/brianmaierjr/long-haul
