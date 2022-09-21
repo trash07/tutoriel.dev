@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  tutoriel.dev:
+    image: tutoriel.dev
+    build:
+      context: ./site
+      dockerfile: Dockerfile
+    container_name: tutoriel.dev
+    volumes:
+      - "./site:/srv/jekyll/"
+    ports:
+      - "4000:4000"
