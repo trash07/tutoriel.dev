@@ -17,7 +17,7 @@ navigation:
   - title: Accueil
     url: /index.html
   - title: Apropos de nous
-    url: /apropos-de-tutoriel.dev
+    url: /apropos-de-tutoriel-dev
   - title: Contact
     url: /contact
 
