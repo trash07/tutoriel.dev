@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Post With A Code Snippet"
+title:  "Exemple de code source"
 date:   2014-12-13
 ---
 
@@ -14,6 +14,17 @@ def print_hi(name)
 end
 print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
+{%- endhighlight -%}
+
+{%- highlight java -%}
+  import java.util.*;
+  class Personne {
+     private Integer id;
+
+     public Integer getId() {
+        return this.id;
+     }
+  }
 {%- endhighlight -%}
 
 Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
