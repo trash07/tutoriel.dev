@@ -1,24 +1,19 @@
 ---
 layout: default
-title: About Long Haul
+title: Apropos de tutoriel.dev
 ---
 
 <div class="post">
-	<h1 class="pageTitle">About Long Haul</h1>
-	<img src="{{ '/assets/img/touring.jpg' }}" alt="">
-	<p class="intro">Long Haul is a minimal, long form <a href="http://jekyllrb.com">Jekyll</a> Theme. It can be used as is or customized to your hearts desire.</p>
-	<p>Long Haul was created in honor of all the hard working touring bicycles that have traversed the globe time and time again. Take it for a spin.</p>
-	<h2>Features</h2>
+	<h1 class="pageTitle">Apropos de nous</h1>
+	<img src="{{ '/assets/img/tutoriel_background.jpg' }}" alt="Logo de tutoriel.dev">
+	<p class="intro">Nous sommes un groupe d'informaticiens qui vous apporte des tutoriels sur vos écrans.</p>
+	<p>Notre but est de vous apporter des tutoriels en programmation, bases de données, administration systèmes</p>
+	<h2>Domaines de publication</h2>
 	<ul>
-		<li>Built with SASS + GULP + BROWSERSYNC + AUTOPREFIXER</li>
-  		<li>SVG Social Icons from <a href="http://customizr.net/icons/">Customizr</a></li>
-  		<li><a href="http://responsive-nav.com/">Responsive Nav Menu</a></li>
-  		<li><a href="https://github.com/snaptortoise/jekyll-rss-feeds">XML Feed for RSS Readers</a></li>
-  		<li>Contact Form via <a href="http://formspree.io/">Formspree</a></li>
-      <li>5 Post Loop with excerpt on Home Page</li>
-  		<li>Previous / Next Post Navigation</li>
-      <li>Estimated Reading Time for posts</li>
-  		<li><a href="https://github.com/adobe-webplatform/dropcap.js">Drop Cap</a> on posts</li>
-  		<li><a href="http://typecast.com/blog/a-more-modern-scale-for-web-typography">A Better Type Scale</a></li>
+		<li>Java, Spring, Spring boot, maven</li>
+  		<li>Modélisation, UML, Merise</li>
+  		<li>Docker, Docker compose, kubernetes, Terraform, Microservices</li>
+  		<li>Node.js, express.js, mongodb, rabbitmq</li>
+  		<li>PHP, Symfony, Laravel</li>
   	</ul>
 </div>
