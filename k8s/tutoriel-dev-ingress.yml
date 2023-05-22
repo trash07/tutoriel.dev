@@ -4,7 +4,7 @@ metadata:
   name: tutoriel-dev-ingress
   labels:
     name: tutoriel-dev-ingress
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
   - host: tutoriel.dev
@@ -17,3 +17,7 @@ spec:
             name: tutoriel-dev-service
             port: 
               number: 80
+  tls:
+  - hosts:
+    - tutoriel.dev
+    secretName: turoriel-dev-cert
