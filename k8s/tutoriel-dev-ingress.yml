@@ -4,6 +4,7 @@ metadata:
   name: tutoriel-dev-ingress
   labels:
     name: tutoriel-dev-ingress
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
   - host: tutoriel.dev
