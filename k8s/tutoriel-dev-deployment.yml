@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tutoriel-dev-deployment
+spec:
+  replicas: 3
+  minReadySeconds: 120
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: tutoriel-dev
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: tutoriel-dev
+        env: prod
+    spec:
+      containers:
+      - name: tutoriel-dev
+        image: lkpeto/tutoriel.dev:1.0.0
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
