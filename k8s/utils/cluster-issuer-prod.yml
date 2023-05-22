@@ -1,0 +1,12 @@
+# @see <https://medium.com/avmconsulting-blog/encrypting-the-certificate-for-kubernetes-lets-encrypt-805d2bf88b2a>
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata: 
+  name: letsencrypt-prod
+spec: 
+  acme: 
+    email: "mmkpeto5@gmail.com"
+    http01: {}
+    privateKeySecretRef: 
+      name: letsencrypt-prod
+    server: "https://acme-v02.api.letsencrypt.org/directory"
