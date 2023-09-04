@@ -1,0 +1,63 @@
+resources:
+- name: tutoriel-repo
+  type: git
+  source:
+    uri: https://github.com/trash07/tutoriel.dev.git
+    branch: master
+
+- name: jekyll-image
+  type: registry-image
+  source:
+    repository: jekyll/jekyll
+    tag: 4
+
+jobs:
+- name: static-site
+  plan:
+    - get: jekyll-image
+    - get: tutoriel-repo
+      trigger: true
+
+    - task: build-static-site
+      image: jekyll-image
+      config:
+        platform: linux
+        inputs:
+          - name: tutoriel-repo
+        outputs:
+          - name: html-site
+            path: ./tutoriel-repo/site/_site
+        run:
+          path: sh
+          args:
+            - -cx
+            - |
+              chmod -Rf 777 tutoriel-repo/site
+              cd tutoriel-repo/site
+              bundle install
+              jekyll build
+
+
+- name: build-docker-image
+  plan:
+    - get: tutoriel-repo
+      passed: [static-site]
+      trigger: true
+
+    - task: build-image
+      config:
+        platform: linux
+        image_resource:
+          type: registry-image
+          source:
+            repository: busybox
+        inputs:
+          - name: html-site
+        run:
+          path: sh
+          args:
+            - -cx
+            - |
+              du -sh html-site/
+              ls -lah html-site/
+          
