@@ -70,7 +70,7 @@ jobs:
               chmod -Rf 777 tutoriel-repo/site
               cd tutoriel-repo/site
               bundle install
-              jekyll build --incremental --watch
+              jekyll build --incremental
               ls -laR _site
 
     - task: build-docker-image
