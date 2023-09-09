@@ -1,6 +1,6 @@
 FROM nginx:1.24.0-alpine-slim
 
-COPY *.conf /etc/nginx/conf.d/
-COPY ./public_html/ /usr/share/nginx/html/_site/
+COPY ./ /usr/share/nginx/html/_site/
+RUN cat "server { location / { root /usr/share/nginx/html/_site/; index index.html } }" > /etc/nginx/conf.d/default.conf && rm -f /usr/share/nginx/html/_site/Dockerfile
 
 EXPOSE 80 443

@@ -1,22 +1,41 @@
 resources:
 - name: tutoriel-repo
   type: git
+  icon: github
   source:
     uri: https://github.com/trash07/tutoriel.dev.git
-    branch: master
+    branch: concourse-init
 
 - name: jekyll-image
   type: registry-image
+  icon: docker
   source:
     repository: jekyll/jekyll
     tag: 4
 
+- name: image-builder
+  type: registry-image
+  icon: docker
+  source:
+    repository: concourse/oci-build-task
+
+- name: tutoriel-dev-image
+  type: registry-image
+  icon: docker
+  source:
+    repository: ((registry-url))
+    username: ((registry-username))
+    password: ((registry-pass))
+    tag: ((registry-tag))
+
 jobs:
-- name: static-site
+- name: build
   plan:
-    - get: jekyll-image
-    - get: tutoriel-repo
-      trigger: true
+    - in_parallel:
+      - get: jekyll-image
+      - get: image-builder
+      - get: tutoriel-repo
+        trigger: true
 
     - task: build-static-site
       image: jekyll-image
@@ -25,8 +44,8 @@ jobs:
         inputs:
           - name: tutoriel-repo
         outputs:
-          - name: html-site
-            path: ./tutoriel-repo/site/_site
+          - name: build-result
+            path: tutoriel-repo/site/_site
         run:
           path: sh
           args:
@@ -37,27 +56,22 @@ jobs:
               bundle install
               jekyll build
 
-
-- name: build-docker-image
-  plan:
-    - get: tutoriel-repo
-      passed: [static-site]
-      trigger: true
-
-    - task: build-image
+    - task: build-docker-image
+      image: image-builder
+      privileged: true
       config:
         platform: linux
-        image_resource:
-          type: registry-image
-          source:
-            repository: busybox
         inputs:
-          - name: html-site
-        run:
-          path: sh
-          args:
-            - -cx
-            - |
-              du -sh html-site/
-              ls -lah html-site/
-          
+          - name: build-result
+          - name: tutoriel-repo
+        outputs:
+          - name: image
+        params:
+          CONTEXT: ./build-result
+          DOCKERFILE: tutoriel-repo/nginx/Dockerfile
+          run:
+            path: build
+
+    - put: tutoriel-dev-image
+      params:
+        image: image/image.tar
