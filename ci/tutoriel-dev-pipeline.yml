@@ -100,4 +100,4 @@ jobs:
       trigger: false
     - put: kubernetes-server
       params:
-        file: "tutoriel-repo/k8s"
+        file: "tutoriel-repo/k8s/"
