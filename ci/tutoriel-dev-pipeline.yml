@@ -69,8 +69,8 @@ jobs:
         params:
           CONTEXT: ./build-result
           DOCKERFILE: tutoriel-repo/nginx/Dockerfile
-          run:
-            path: build
+        run:
+          path: build
 
     - put: tutoriel-dev-image
       params:
