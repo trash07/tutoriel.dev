@@ -1,3 +1,10 @@
+resource_types:
+  - name: kubectl
+    type: docker-image
+    source:
+      repository: jmkarthik/concourse-kubectl-resource
+      tag: latest
+
 resources:
 - name: tutoriel-repo
   type: git
@@ -27,6 +34,16 @@ resources:
     username: ((registry-username))
     password: ((registry-pass))
     tag: ((registry-tag))
+
+
+- name: kubernetes-server
+  type: kubectl
+  icon: server-network
+  source:
+    api_server_uri: ((kubectl-server))
+    namespace: ((kubectl-namespace))
+    certificate_authority_data: ((kubectl-certificate))
+    token: ((kubectl-token))
 
 jobs:
 - name: build
@@ -75,3 +92,12 @@ jobs:
     - put: tutoriel-dev-image
       params:
         image: image/image.tar
+
+- name: deploy-website
+  plan:
+    - get: tutoriel-repo
+      passed: [ build ]
+      trigger: false
+    - put: kubernetes-server
+      params:
+        file: "tutoriel-repo/k8s"
