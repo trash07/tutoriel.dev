@@ -2,8 +2,8 @@ resource_types:
   - name: kubectl
     type: docker-image
     source:
-      repository: jmkarthik/concourse-kubectl-resource
-      tag: latest
+      repository: kudohn/concourse-k8s-resource
+      tag: 0.0.8
 
 resources:
 - name: tutoriel-repo
@@ -40,10 +40,9 @@ resources:
   type: kubectl
   icon: server-network
   source:
-    api_server_uri: ((kubectl-server))
-    namespace: ((kubectl-namespace))
-    certificate_authority_data: ((kubectl-certificate))
-    token: ((kubectl-token))
+    api_server_url: ((kubectl-server))
+    client_token: ((kubectl-token))
+    skip_tls_verify: true
 
 jobs:
 - name: build
@@ -100,4 +99,9 @@ jobs:
       trigger: false
     - put: kubernetes-server
       params:
-        file: "tutoriel-repo/k8s/"
+        status_check_timeout: 60
+        command_timeout: 30
+        paths:
+          - tutoriel-repo/k8s/tutoriel-dev-deployment.yml
+          - tutoriel-repo/k8s/tutoriel-dev-ingress.yml
+          - tutoriel-repo/k8s/tutoriel-dev-service.yml
