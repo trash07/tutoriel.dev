@@ -72,6 +72,7 @@ jobs:
               bundle install
               jekyll build
               cd ../../
+              pwd
               cp -f tutoriel-repo/nginx/default.conf tutoriel-repo/site/_site
 
     - task: build-docker-image
