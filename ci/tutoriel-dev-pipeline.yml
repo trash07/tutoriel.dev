@@ -71,7 +71,8 @@ jobs:
               cd tutoriel-repo/site
               bundle install
               jekyll build
-              ls -laR _site
+              cd ../../
+              cp -f tutoriel-repo/nginx/default.conf tutoriel-repo/site/_site
 
     - task: build-docker-image
       image: image-builder
