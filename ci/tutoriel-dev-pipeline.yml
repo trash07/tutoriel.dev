@@ -70,7 +70,7 @@ jobs:
               chmod -Rf 777 tutoriel-repo/site
               cd tutoriel-repo/site
               bundle install
-              jekyll build --incremental
+              jekyll build
               ls -laR _site
 
     - task: build-docker-image
@@ -88,6 +88,11 @@ jobs:
           DOCKERFILE: tutoriel-repo/nginx/Dockerfile
         run:
           path: build
+#          path: sh
+#          args:
+#            - -cx
+#            - |
+#              ls -lahR
 
     - put: tutoriel-dev-image
       params:
@@ -101,8 +106,6 @@ jobs:
     - put: kubernetes-server
       params:
         status_check_timeout: 60
-        command_timeout: 30
+        command_timeout: 90
         paths:
-          - tutoriel-repo/k8s/tutoriel-dev-deployment.yml
-          - tutoriel-repo/k8s/tutoriel-dev-ingress.yml
-          - tutoriel-repo/k8s/tutoriel-dev-service.yml
+          - tutoriel-repo/k8s/
