@@ -3,4 +3,4 @@
 
 
 ## Todos:
-- [] Remove docker compose local build strategy when concourse pipeline is up
+- [ ] Remove docker compose local build strategy when concourse pipeline is up
