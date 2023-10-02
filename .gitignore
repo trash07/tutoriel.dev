@@ -1,2 +1,4 @@
 /.idea/
 /site/_site/
+.jekyll-metadata
+/ci/parameters.yml

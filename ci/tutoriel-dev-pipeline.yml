@@ -1,0 +1,106 @@
+resource_types:
+  - name: kubectl
+    type: docker-image
+    source:
+      repository: kudohn/concourse-k8s-resource
+      tag: 0.0.8
+
+resources:
+- name: tutoriel-repo
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/trash07/tutoriel.dev.git
+    branch: ((repo-branch))
+
+- name: jekyll-image
+  type: registry-image
+  icon: docker
+  source:
+    repository: jekyll/jekyll
+    tag: 4
+
+- name: image-builder
+  type: registry-image
+  icon: docker
+  source:
+    repository: concourse/oci-build-task
+
+- name: tutoriel-dev-image
+  type: registry-image
+  icon: docker
+  source:
+    repository: ((registry-url))
+    username: ((registry-username))
+    password: ((registry-pass))
+    tag: ((registry-tag))
+
+
+- name: kubernetes-server
+  type: kubectl
+  icon: server-network
+  source:
+    api_server_url: ((kubectl-server))
+    client_token: ((kubectl-token))
+    skip_tls_verify: true
+
+jobs:
+- name: build
+  plan:
+    - in_parallel:
+      - get: jekyll-image
+      - get: image-builder
+      - get: tutoriel-repo
+        trigger: true
+
+    - task: build-static-site
+      image: jekyll-image
+      config:
+        platform: linux
+        inputs:
+          - name: tutoriel-repo
+        outputs:
+          - name: build-result
+            path: tutoriel-repo/site/_site
+        run:
+          path: sh
+          args:
+            - -cx
+            - |
+              chmod -Rf 777 tutoriel-repo/site
+              cd tutoriel-repo/site
+              bundle install
+              jekyll build
+              cd ../../
+              cp -f tutoriel-repo/nginx/default.conf tutoriel-repo/site/_site
+
+    - task: build-docker-image
+      image: image-builder
+      privileged: true
+      config:
+        platform: linux
+        inputs:
+          - name: build-result
+          - name: tutoriel-repo
+        outputs:
+          - name: image
+        params:
+          CONTEXT: ./build-result
+          DOCKERFILE: tutoriel-repo/nginx/Dockerfile
+        run:
+          path: build
+    - put: tutoriel-dev-image
+      params:
+        image: image/image.tar
+
+- name: deploy-website
+  plan:
+    - get: tutoriel-repo
+      passed: [ build ]
+      trigger: false
+    - put: kubernetes-server
+      params:
+        status_check_timeout: 60
+        command_timeout: 90
+        paths:
+          - tutoriel-repo/k8s/
