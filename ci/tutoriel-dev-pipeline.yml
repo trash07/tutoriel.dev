@@ -11,7 +11,7 @@ resources:
   icon: github
   source:
     uri: https://github.com/trash07/tutoriel.dev.git
-    branch: concourse-init
+    branch: ((repo-branch))
 
 - name: jekyll-image
   type: registry-image
