@@ -1,0 +1,7 @@
+registry-url: lkpeto/tutoriel.dev
+registry-username:
+registry-pass:
+registry-tag: latest
+
+kubectl-server: https://194.163.189.73:16443
+kubectl-token: # JWT token
