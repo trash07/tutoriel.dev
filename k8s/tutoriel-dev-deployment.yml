@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: tutoriel-dev-deployment
 spec:
-  replicas: 3
+  replicas: 1
   minReadySeconds: 120
   revisionHistoryLimit: 2
   selector:
@@ -18,11 +18,8 @@ spec:
     spec:
       containers:
       - name: tutoriel-dev
-        image: lkpeto/tutoriel.dev:latest
+        image: lkpeto/tutoriel.dev:1.0.2
         imagePullPolicy: Always
-        securityContext:
-          runAsNonRoot: true
-          allowPrivilegeEscalation: false
         resources:
           limits:
             memory: "128Mi"
