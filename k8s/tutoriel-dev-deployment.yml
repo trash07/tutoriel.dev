@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: tutoriel-dev
-        image: lkpeto/tutoriel.dev:latest
+        image: lkpeto/tutoriel.dev:1.0.2
         imagePullPolicy: Always
         securityContext:
           runAsNonRoot: true
