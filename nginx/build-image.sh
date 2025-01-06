@@ -1,5 +1,7 @@
+#!/bin/bash
+
 echo 'tutoriel.dev image builder'
-echo 'Build tag = \c' 
+echo 'Build tag = \c'
 read tag
 
 echo 'Building final image ...'
