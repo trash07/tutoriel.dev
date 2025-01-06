@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: tutoriel-dev-deployment
 spec:
-  replicas: 3
+  replicas: 1
   minReadySeconds: 120
   revisionHistoryLimit: 2
   selector:
