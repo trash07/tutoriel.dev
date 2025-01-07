@@ -32,10 +32,10 @@ services:
   ######  SERVE BUILD FOR PROD WITH NGINX   ###
   #############################################
   serve:
-    image: nginx:1.27-alpine
+    image: nginx:${NGINX_VERSION}
     container_name: serve
     volumes:
-      - ${TARGET_DIR}:/usr/share/nginx/html
+      - ${TARGET_DIR}:${NGINX_DOCUMENT_ROOT}
     ports:
       - "8080:80"
     depends_on:
