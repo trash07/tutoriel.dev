@@ -3,3 +3,4 @@
 .jekyll-metadata
 /ci/parameters.yml
 /site/.jekyll-cache/
+/target/

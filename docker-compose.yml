@@ -1,13 +1,42 @@
 version: '3'
-
 services:
-  tutoriel.dev:
-    image: tutoriel.dev
+  #############################################
+  ######  LOCAL BUILD WITH LIVERELOAD   #######
+  #############################################
+  build.dev:
+    image: build.dev
     build:
       context: ./site
       dockerfile: Dockerfile
-    container_name: tutoriel.dev
+    container_name: build.dev
     volumes:
-      - "./site:/srv/jekyll/"
+      - ${SITE_DIR}:/srv/jekyll/
     ports:
       - "4000:4000"
+  #############################################
+  ############  BUILD FOR PROD   ##############
+  #############################################
+  build:
+    image: jekyll/builder:4
+    container_name: build
+    #entrypoint: tail -f /dev/null
+    command: >
+      bash -c "
+        set -x
+        jekyll build 
+        cp -fr _site/* ${BUILD_TARGET}"
+    volumes:
+      - ${SITE_DIR}:/srv/jekyll
+      - ${TARGET_DIR}:${BUILD_TARGET}
+  #############################################
+  ######  SERVE BUILD FOR PROD WITH NGINX   ###
+  #############################################
+  serve:
+    image: nginx:1.27-alpine
+    container_name: serve
+    volumes:
+      - ${TARGET_DIR}:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - build
