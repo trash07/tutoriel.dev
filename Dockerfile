@@ -1,3 +1,3 @@
-FROM nginx:1.27-alpine-slim
-COPY ./ /usr/share/nginx/html
+FROM nginx:${NGINX_VERSION}
+COPY ./ ${NGINX_DOCUMENT_ROOT}
 EXPOSE 80 443
