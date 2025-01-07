@@ -4,7 +4,6 @@ title: tutoriel.dev
 ---
 
 <div class="home" id="home">
-  <h1 class="pageTitle">Publications récentes</h1>
   <div class="posts noList">
     {%- for post in paginator.posts -%}
     <article>
@@ -14,6 +13,7 @@ title: tutoriel.dev
     </article>
     {%- endfor -%}
   </div>
+
   <!-- Pagination links -->
   <div class="pagination">
     {%- if paginator.previous_page -%}

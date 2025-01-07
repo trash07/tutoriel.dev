@@ -67,12 +67,12 @@ jobs:
           args:
             - -cx
             - |
+              set -x
               chmod -Rf 777 tutoriel-repo/site
               cd tutoriel-repo/site
               bundle install
               jekyll build
               cd ../../
-              cp -f tutoriel-repo/nginx/default.conf tutoriel-repo/site/_site
 
     - task: build-docker-image
       image: image-builder
@@ -86,7 +86,7 @@ jobs:
           - name: image
         params:
           CONTEXT: ./build-result
-          DOCKERFILE: tutoriel-repo/nginx/Dockerfile
+          DOCKERFILE: tutoriel-repo/Dockerfile
         run:
           path: build
     - put: tutoriel-dev-image
@@ -103,4 +103,4 @@ jobs:
         status_check_timeout: 60
         command_timeout: 90
         paths:
-          - tutoriel-repo/k8s/
+          - tutoriel-repo/ci/k8s/
