@@ -73,8 +73,8 @@ jobs:
               bundle install
               jekyll build
               cd ../../
-              cp -f Dockerfile .env site/_site
-              ls -lR
+              cp -f Dockerfile site/_site
+              ls -l site/_site
 
     - task: build-docker-image
       image: image-builder
