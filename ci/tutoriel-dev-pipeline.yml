@@ -73,8 +73,6 @@ jobs:
               bundle install
               jekyll build
               cd ../../
-              cp -f Dockerfile .env site/_site
-              ls -la site/_site
 
     - task: build-docker-image
       image: image-builder
@@ -89,7 +87,6 @@ jobs:
         params:
           CONTEXT: ./build-result
           DOCKERFILE: tutoriel-repo/Dockerfile
-          BUILD_ARGS_FILE: ./build-result/.env
         run:
           path: build
     - put: tutoriel-dev-image
