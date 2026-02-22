@@ -3,10 +3,9 @@ layout: post
 title:  "Comment exposer une application locale sur internet ?"
 date:   2022-09-30
 ---
-<p class="intro"><span class="dropcap">D</span>es fois, en développant les applications,
+Des fois, en développant les applications,
 vous vous retrouvez dans une situation où vous auriez voulu donner une adresse IP publique à votre 
 application locale.
-</p>
 
 ## Mise en situation
 Vous avez une application qui s'exécute sur votre machine locale et vous voulez
@@ -28,31 +27,31 @@ Avant d'initialiser le projet [express.js](https://expressjs.com/), vous avez be
 [Node.JS](https://nodejs.org/en/) installé. Pour vérifier que votre installation de Node.JS 
 a réussi, tapez les commandes qui suivent dans votre terminal. Je vous laisse
 
-{%- highlight bash -%}
+```bash
 $ node -v &&  npm -v
-{%- endhighlight -%}
+```
 
-{%- highlight bash %}
+```bash
 v16.17.0  
 8.15.0
-{%- endhighlight -%}
+```
 
 La sortie montre que ma version de Node.Js est le **v16.17.0** et la version du **npm**
 est le **8.15.0**.
 
 Pour initialiser un projet d'exemple, nous allons créer un dossier nommé **exposition** et utiliser la commande **npm init**.
 
-{%- highlight bash %}
+```bash
 $ mkdir exposition
 $ cd exposition
 $ npm init -y
-{%- endhighlight -%}
+```
 
 Dans la commande précédente, l'option **-y** permet d'accepter toutes les options par défaut.
 Enlevez-la si vous souhaitez répondre à toutes les questions vous même.
 
 Si tout se passe bien, vous aurez dans le dossier _exposition_ un fichier _package.json_
-{%- highlight json %}
+```json
     {
         "name": "exposition",
         "version": "1.0.0",
@@ -65,20 +64,20 @@ Si tout se passe bien, vous aurez dans le dossier _exposition_ un fichier _packa
         "author": "",
         "license": "ISC"
     }
-{%- endhighlight -%}
+```
 
 Ensuite, on installe express, on crée le dossier **src** et on crée un fichier **index.js**
 
-{%- highlight bash %}
+```bash
 $ npm install express  
 $ mkdir src
 $ cd src/
 $ touch index.js
-{%- endhighlight -%}
+```
 
 Dans le fichier **src/index.js** du dossier **exposition**, on va mettre le contenu suivant:
 
-{%- highlight javascript %}
+```javascript
 // intialiser express
 const express = require('express')
 const app = express()
@@ -93,14 +92,14 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
-{%- endhighlight -%}
+```
 
 Une dernière configuration avant de lancer l'application serait d'aller dans le fichier 
 **package.json** et de remplacer la ligne où il y a   **"main": "index.js"** par
 **"main": "src/index.js"** et d'ajouter dans le bloc **scripts** la ligne
 **"start": "node src/index.js"**. Le fichier **package.json** final ressemblera à ce qui suit.
 
-{%- highlight json -%}
+```json
 {
     "name": "exposition",
     "version": "1.0.0",
@@ -117,17 +116,17 @@ Une dernière configuration avant de lancer l'application serait d'aller dans le
         "express": "^4.18.1"
     }
 }
-{%- endhighlight -%}
+```
 
 Maintenant, vous pouvez lancer l'application en tapant la commande **npm start**
 
-{%- highlight bash -%}
+```bash
 $ npm start
 > exposition@1.0.0 start
 > node src/index.js
 
 Example app listening on port 3000
-{%- endhighlight -%}
+```
 
 Cette sortie montre que l'application s'exécute bien sur le port **3000** de notre machine locale.
 
@@ -137,19 +136,19 @@ besoin d'un outils qui s'appelle [localtunnel](https://localtunnel.github.io/www
 
 Pour l'installer comme une application, tapez la commande qui suit:
 
-{%- highlight bash -%}
+```bash
 $ npm install -g localtunnel
-{%- endhighlight -%}
+```
 
 Une fois que l'installation a marché, vous êtes maintenant prêt à l'exposer au monde par 
 internet.
 Pour ce faire nous allons utiliser la commande **lt --port** et comme l'application est 
 lancée sur le port **3000** on aura le résutat ci-dessous.
 
-{%- highlight bash -%}
+```bash
 lt --port 3000
 your url is: https://two-dryers-shine-160-242-200-188.loca.lt
-{%- endhighlight -%}
+```
 
 Le résultat montre que l'application est accessible sur internet sur le
 **https://two-dryers-shine-160-242-200-188.loca.lt**

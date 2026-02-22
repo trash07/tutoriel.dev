@@ -3,9 +3,9 @@ layout: post
 title:  "Installer Jenkins avec docker compose"
 date:   2022-10-01
 ---
-<p class="intro"><span class="dropcap">D</span>ans ce tutoriel, nous allons voir comment installer 
+Dans ce tutoriel, nous allons voir comment installer
 un serveur d'intégration continue <a href="https://www.jenkins.io/">Jenkins</a> à partir de docker-compose
-</p>
+
 
 ## Prérequis
 Pour bien suivre ce tutoriel, vous avez besoin d'avoir docker et docker-compose installés.
@@ -29,27 +29,27 @@ Voici comment nous allons procéder:
 Dans ce tutoriel nous allons utiliser des versions de docker et de docker-compose qui ne sont
 pas les plus récentes.
 
-{%- highlight bash -%}
+```bash
 $ sudo docker --version && sudo docker-compose --version
 Docker version 20.10.12, build 20.10.12-0ubuntu4
 docker-compose version 1.29.2, build unknown
-{%- endhighlight -%}
+```
 
 Si vous utilisez une version récente de docker qui embarque compose vous n'avez qu'à remplacer
 
-{%- highlight bash -%}
+```bash
 $ sudo docker-compose <reste>
-{%- endhighlight -%}
+```
 
 par 
 
-{%- highlight bash -%}
+```bash
 $ sudo docker compose <reste>
-{%- endhighlight -%}
+```
 
 
 ## Le fichier docker-compose.yml
-{%- highlight yaml -%}
+```yaml
 version: '3'
 services:
     jenkins:
@@ -65,20 +65,20 @@ services:
 volumes:
   jenkins_home:
     external: true
-{%- endhighlight -%}
+```
 
 Avant de lancer le serveur Jenkins, vous avez besoin de créer le volume externe `jenkins_home` 
 d'abord. Pour ce faire, exécutez la commande qui suit.
 
-{%- highlight bash -%}
+```bash
 $ sudo docker volume create jenkins_home 
-{%- endhighlight -%}
+```
 
 Ensuite, vous pouvez maintenant lancer le stack compose.
 
-{%- highlight bash -%}
+```bash
 $ sudo docker-compose up -d
-{%- endhighlight -%}
+```
 
 Maintenant vous pouvez poursuivre les installations en tapant l'adresse qui suit dans 
 votre navigateur:
@@ -91,9 +91,9 @@ Puis suivez les instructions.
 Une fois que vous avez fini toutes vos activités, vous pouvez éteindre le serveur en
 excécutant la commande qui suit.
 
-{%- highlight bash -%}
+```bash
 $ sudo docker-compose down
-{%- endhighlight -%}
+```
 
 ## Conclusion
 Le but de ce tutoriel est de vous amener à installer un serveur Jenkins en local.
