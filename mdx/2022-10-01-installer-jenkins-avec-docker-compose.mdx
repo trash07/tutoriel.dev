@@ -1,31 +1,37 @@
 ---
 layout: post
-title:  "Installer Jenkins avec docker compose"
-date:   2022-10-01
+title: 'Installer Jenkins avec docker compose'
+date: 2022-10-01
 ---
+
 Dans ce tutoriel, nous allons voir comment installer
 un serveur d'intégration continue <a href="https://www.jenkins.io/">Jenkins</a> à partir de docker-compose
 
-
 ## Prérequis
+
 Pour bien suivre ce tutoriel, vous avez besoin d'avoir docker et docker-compose installés.
 Si vous ne les avez pas suivez les liens qui suivent pour:
-* installer [docker](https://docs.docker.com/engine/install/)
-* installer [docker-compose](https://docs.docker.com/compose/install/)
+
+- installer [docker](https://docs.docker.com/engine/install/)
+- installer [docker-compose](https://docs.docker.com/compose/install/)
 
 Ce tutoriel suppose également que vous ayez une idée de ce que sont les concepts suivants:
-* docker,
-* docker-compose, 
-* jenkins,
-* le fichier docker-compose.yml
+
+- docker,
+- docker-compose,
+- jenkins,
+- le fichier docker-compose.yml
 
 ## Plan de travail
-Voici comment nous allons procéder:
-* Vérification des installations de docker et docker-compose
-* Constitution du fichier docker-compose.yml
-* Installation de l'application
 
-##  docker et docker-compose
+Voici comment nous allons procéder:
+
+- Vérification des installations de docker et docker-compose
+- Constitution du fichier docker-compose.yml
+- Installation de l'application
+
+## docker et docker-compose
+
 Dans ce tutoriel nous allons utiliser des versions de docker et de docker-compose qui ne sont
 pas les plus récentes.
 
@@ -41,37 +47,37 @@ Si vous utilisez une version récente de docker qui embarque compose vous n'avez
 $ sudo docker-compose <reste>
 ```
 
-par 
+par
 
 ```bash
 $ sudo docker compose <reste>
 ```
 
-
 ## Le fichier docker-compose.yml
+
 ```yaml
 version: '3'
 services:
-    jenkins:
-        image: jenkins/jenkins:lts-jdk11
-        container_name: jenkins
-    volumes:
-        - "jenkins_home:/var/jenkins_home/"
-    ports:
-        - "8080:8080"
-        - "50000:50000"
-    restart: always
-  
+  jenkins:
+    image: jenkins/jenkins:lts-jdk11
+    container_name: jenkins
+  volumes:
+    - 'jenkins_home:/var/jenkins_home/'
+  ports:
+    - '8080:8080'
+    - '50000:50000'
+  restart: always
+
 volumes:
   jenkins_home:
     external: true
 ```
 
-Avant de lancer le serveur Jenkins, vous avez besoin de créer le volume externe `jenkins_home` 
+Avant de lancer le serveur Jenkins, vous avez besoin de créer le volume externe `jenkins_home`
 d'abord. Pour ce faire, exécutez la commande qui suit.
 
 ```bash
-$ sudo docker volume create jenkins_home 
+$ sudo docker volume create jenkins_home
 ```
 
 Ensuite, vous pouvez maintenant lancer le stack compose.
@@ -80,7 +86,7 @@ Ensuite, vous pouvez maintenant lancer le stack compose.
 $ sudo docker-compose up -d
 ```
 
-Maintenant vous pouvez poursuivre les installations en tapant l'adresse qui suit dans 
+Maintenant vous pouvez poursuivre les installations en tapant l'adresse qui suit dans
 votre navigateur:
 
 **http:127.0.0.1:8080**
@@ -88,6 +94,7 @@ votre navigateur:
 Puis suivez les instructions.
 
 ## Eteindre le serveur Jenkins
+
 Une fois que vous avez fini toutes vos activités, vous pouvez éteindre le serveur en
 excécutant la commande qui suit.
 
@@ -96,5 +103,5 @@ $ sudo docker-compose down
 ```
 
 ## Conclusion
-Le but de ce tutoriel est de vous amener à installer un serveur Jenkins en local.
 
+Le but de ce tutoriel est de vous amener à installer un serveur Jenkins en local.

@@ -17,12 +17,12 @@ spec:
         env: prod
     spec:
       containers:
-      - name: tutoriel-dev
-        image: lkpeto/tutoriel.dev:latest
-        imagePullPolicy: Always
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 80
+        - name: tutoriel-dev
+          image: lkpeto/tutoriel.dev:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+          ports:
+            - containerPort: 80

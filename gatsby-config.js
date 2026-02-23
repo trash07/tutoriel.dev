@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: `tutoriel.dev`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://tutoriel.dev`,
   },
   plugins: [],
-}
+};
