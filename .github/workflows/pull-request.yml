@@ -5,9 +5,9 @@ on:
       - master
       - feat/*
 jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
       - name: List files
         run: ls
