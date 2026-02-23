@@ -1,4 +1,4 @@
-name: 3 | Release changes
+name: 2 | Promote to RC
 on:
   workflow_dispatch:
 jobs:
@@ -6,5 +6,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Publish post
+      - name: Promote to RC
         run: ls
