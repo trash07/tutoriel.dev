@@ -31,7 +31,7 @@
 
     Your site is now running at http://localhost:8000!
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+    Edit `src/pages/index.jsx` to see your site update in real-time!
 
 4.  **Learn more**
     - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)

@@ -1,7 +1,8 @@
 ---
-layout: post
 title: 'Comment exposer une application locale sur internet ?'
+slug: comment-exposer-une-application-locale-sur-internet
 date: 2022-09-30
+author: lkpeto
 ---
 
 Des fois, en développant les applications,
@@ -62,7 +63,7 @@ Si tout se passe bien, vous aurez dans le dossier _exposition_ un fichier _packa
   "name": "exposition",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -72,16 +73,16 @@ Si tout se passe bien, vous aurez dans le dossier _exposition_ un fichier _packa
 }
 ```
 
-Ensuite, on installe express, on crée le dossier **src** et on crée un fichier **index.js**
+Ensuite, on installe express, on crée le dossier **src** et on crée un fichier **index.jsx**
 
 ```bash
 $ npm install express
 $ mkdir src
 $ cd src/
-$ touch index.js
+$ touch index.jsx
 ```
 
-Dans le fichier **src/index.js** du dossier **exposition**, on va mettre le contenu suivant:
+Dans le fichier **src/index.jsx** du dossier **exposition**, on va mettre le contenu suivant:
 
 ```javascript
 // intialiser express
@@ -101,18 +102,18 @@ app.listen(port, () => {
 ```
 
 Une dernière configuration avant de lancer l'application serait d'aller dans le fichier
-**package.json** et de remplacer la ligne où il y a **"main": "index.js"** par
-**"main": "src/index.js"** et d'ajouter dans le bloc **scripts** la ligne
-**"start": "node src/index.js"**. Le fichier **package.json** final ressemblera à ce qui suit.
+**package.json** et de remplacer la ligne où il y a **"main": "index.jsx"** par
+**"main": "src/index.jsx"** et d'ajouter dans le bloc **scripts** la ligne
+**"start": "node src/index.jsx"**. Le fichier **package.json** final ressemblera à ce qui suit.
 
 ```json
 {
   "name": "exposition",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/index.jsx",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/index.jsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -129,7 +130,7 @@ Maintenant, vous pouvez lancer l'application en tapant la commande **npm start**
 ```bash
 $ npm start
 > exposition@1.0.0 start
-> node src/index.js
+> node src/index.jsx
 
 Example app listening on port 3000
 ```
