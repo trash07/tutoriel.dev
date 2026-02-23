@@ -1,0 +1,9 @@
+---
+- name: Save build artifact
+  become: false
+  hosts: servers
+  gather_facts: false
+  tasks:
+    - name: Compress
+      ansible.builtin.command:
+        cmd: ls -l
