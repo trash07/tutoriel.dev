@@ -7,5 +7,13 @@
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
   tasks:
     - name: Compress
-      ansible.builtin.command:
-        cmd: ls -l
+      ansible.builtin.archive:
+        path:
+          - ci/
+          - public/
+        dest: artifact.tar.bz2
+        type: bz2
+    - name: Store artifact
+      ansible.builtin.copy:
+        src: artifact.tar.bz2
+        dest: /tmp/artifact.tar.bz2
