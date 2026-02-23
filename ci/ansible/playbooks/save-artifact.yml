@@ -3,6 +3,8 @@
   become: false
   hosts: servers
   gather_facts: false
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
   tasks:
     - name: Compress
       ansible.builtin.command:
