@@ -27,4 +27,4 @@ jobs:
       - name: Save artifact
         run: |
           set -x
-          ansible-playbook -i ci/ansible/inventory.ini ci/ansible/playbooks/save-artifact.yml --extra-vars="ansible_user=${{ secrets.ANSIBLE_USER }} ansible_password=${{ secrets.ANSIBLE_PASS }}"
+          ansible-playbook -i ci/ansible/inventory.ini ci/ansible/playbooks/save-artifact.yml --extra-vars="ansible_user=${{ secrets.ANSIBLE_USER }} ansible_password=${{ secrets.ANSIBLE_PASS }} host_key_checking=False"
