@@ -17,7 +17,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ vars.NODE_JS_VERSION }}
-      - name: List files
+          cache: 'npm'
+      - name: Build static site
         run: |
           set -x 
           npm install
