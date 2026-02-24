@@ -11,6 +11,6 @@
         path:
           - ci/
           - public/
-        dest: /tmp/artifact.tar.bz2
+        dest: ./artifact.tar.bz2
         format: bz2
         force_archive: true

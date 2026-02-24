@@ -31,4 +31,4 @@ jobs:
       - name: List
         run: |
           set -x
-          ls -al /tmp/artifact.tar.bz2
+          ls -al
