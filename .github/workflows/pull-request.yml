@@ -23,7 +23,6 @@ jobs:
           set -x 
           npm install
           npm run build
-          ls
       - name: Save artifact
         env:
           REMOTE_FOLDER: '/home/github/dev/artifact/${{ github.repository }}/pull-request'
@@ -33,3 +32,14 @@ jobs:
             ci/ansible/playbooks/save-artifact.yml \
             --extra-vars="ansible_user=${{ secrets.ANSIBLE_USER }} ansible_password=${{ secrets.ANSIBLE_PASS }} current_directory=$(pwd) \
             remote_folder=${REMOTE_FOLDER}"
+
+  deploy-to-preview:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to preview environment
+        env:
+          REMOTE_FOLDER: '/home/github/dev/artifact/${{ github.repository }}/pull-request'
+        run: |
+          set -x
+          ls -l
