@@ -9,9 +9,9 @@
     - name: Compress
       community.general.archive:
         path:
-          - "{{ current_directory }}/ci/*"
-          - "{{ current_directory }}/public/*"
-        dest: "{{ current_directory }}/artifact.tar.bz2"
+          - '{{ current_directory }}/ci/*'
+          - '{{ current_directory }}/public/*'
+        dest: '{{ current_directory }}/artifact.tar.bz2'
         format: bz2
 
 - name: Upload artifact
@@ -24,5 +24,5 @@
   tasks:
     - name: Upload artifact
       ansible.builtin.copy:
-        src: "{{ current_directory }}/artifact.tar.bz2"
-        dest: "{{ remote_folder }}/artifact.tar.bz2
+        src: '{{ current_directory }}/artifact.tar.bz2'
+        dest: '{{ remote_folder }}/artifact.tar.bz2'
