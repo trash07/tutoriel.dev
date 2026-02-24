@@ -1,16 +1,17 @@
 ---
 - name: Save build artifact
   become: false
-  hosts: servers
+  hosts: localhost
+  connection: local
   gather_facts: false
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    current_directory: null # provided in param
   tasks:
     - name: Compress
       community.general.archive:
         path:
-          - ci/
-          - public/
-        dest: ./artifact.tar.bz2
+          - "{{ current_directory }}/ci/*"
+          - "{{ current_directory }}/public/*"
+        dest: "{{ current_directory }}/artifact.tar.bz2"
         format: bz2
-        force_archive: true
