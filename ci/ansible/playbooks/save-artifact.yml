@@ -14,7 +14,7 @@
         dest: '{{ current_directory }}/artifact.tar.bz2'
         format: bz2
 
-- name: Upload artifact
+- name: Save artifact
   become: false
   hosts: servers
   gather_facts: false
@@ -22,6 +22,11 @@
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
     remote_folder: null # provided in param
   tasks:
+    - name: Create remote folder
+      ansible.builtin.file:
+        path: '{{ remote_folder }}'
+        state: directory
+        mode: '0755'
     - name: Upload artifact
       ansible.builtin.copy:
         src: '{{ current_directory }}/artifact.tar.bz2'
