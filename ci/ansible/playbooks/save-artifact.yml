@@ -1,11 +1,9 @@
 ---
-- name: Save build artifact
+- name: Compress build artifacts
   become: false
-  hosts: localhost
-  connection: local
+  hosts: gha
   gather_facts: false
   vars:
-    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
     current_directory: null # provided in param
   tasks:
     - name: Compress
@@ -15,3 +13,16 @@
           - "{{ current_directory }}/public/*"
         dest: "{{ current_directory }}/artifact.tar.bz2"
         format: bz2
+
+- name: Upload artifact
+  become: false
+  hosts: servers
+  gather_facts: false
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    remote_folder: null # provided in param
+  tasks:
+    - name: Upload artifact
+      ansible.builtin.copy:
+        src: "{{ current_directory }}/artifact.tar.bz2"
+        dest: "{{ remote_folder }}/artifact.tar.bz2
