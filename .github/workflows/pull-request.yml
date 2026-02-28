@@ -49,3 +49,11 @@ jobs:
         run: tar -xjf artifact.tar.bz2
       - name: List
         run: ls -la
+      - uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["ci/k8s/*.yml"]'
+        env:
+          ENV: preview
+          HOST: ${{ vars.HOST }}
+      - name: Check replacements
+        run: cat ci/k8s/*.yml
