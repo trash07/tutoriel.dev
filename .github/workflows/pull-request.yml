@@ -57,3 +57,11 @@ jobs:
           HOST: ${{ vars.HOST }}
       - name: Check replacements
         run: cat ci/k8s/*.yml
+      - name: Build and compress output
+        run: |
+          set -x
+          mkdir output
+          cp -fr ci/k8s/*.yml output/k8s
+          cp -fr public/* output/public
+          cp -f ci/Dockerfile output/Dockerfile
+          ls -laR output
