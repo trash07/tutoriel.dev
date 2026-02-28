@@ -16,9 +16,10 @@
       register: fetch_result
     - name: Debug fetch result
       ansible.builtin.debug:
-        var: |
+        msg: |
           File saved to: {{ fetch_result.dest }}
           Original remote path: {{ fetch_result.src }}
+
 #    - name: Extract artifact
 #      ansible.builtin.unarchive:
 #        src: '{{ current_directory }}/artifact.tar.bz2'
