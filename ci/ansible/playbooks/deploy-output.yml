@@ -22,3 +22,8 @@
         src: '{{ remote_folder }}/output.tar.bz2'
         dest: '{{ remote_folder }}/'
         remote_src: yes
+    - name: Build and deploy
+      ansible.builtin.shell: |
+        set -x
+        cd {{ remote_folder }}
+        docker build -t ok:latest .
