@@ -25,6 +25,5 @@
     - name: Build and deploy
       ansible.builtin.shell: |
         set -x
-        cd {{ remote_folder }}
-        docker build -t lkpeto/tutoriel.dev:preview .
-        kubectl apply -f k8s/
+        cd {{ remote_folder }};
+        docker build -t lkpeto/tutoriel.dev:preview . ;
