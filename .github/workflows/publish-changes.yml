@@ -1,12 +1,12 @@
-name: 2 | Promote to RC
+name: 3 | Release changes
 on:
   workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
     environment:
-      name: dev
+      name: prod
       url: ${{ vars.HOST }}
     steps:
-      - name: Promote to RC
+      - name: Publish changes
         run: ls

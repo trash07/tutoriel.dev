@@ -37,7 +37,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: prod
+      name: preview
+      url: ${{ vars.HOST }}
     steps:
       - name: Deploy to preview environment
         env:
