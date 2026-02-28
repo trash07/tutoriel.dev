@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: prod
-      url: ${{ vars.HOST }}
+      url: https://${{ vars.HOST }}
     steps:
       - name: Publish changes
         run: ls

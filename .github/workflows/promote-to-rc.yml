@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: dev
-      url: ${{ vars.HOST }}
+      url: https://${{ vars.HOST }}
     steps:
       - name: Promote to RC
         run: ls
