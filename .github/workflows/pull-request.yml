@@ -40,6 +40,7 @@ jobs:
       name: preview
       url: https://${{ vars.HOST }}
     steps:
+      - uses: actions/checkout@v5
       - name: Download artifact
         env:
           REMOTE_FOLDER: '/home/github/dev/artifact/${{ github.repository }}/pull-request'
