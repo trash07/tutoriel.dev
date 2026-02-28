@@ -26,4 +26,5 @@
       ansible.builtin.shell: |
         set -x
         cd {{ remote_folder }}
-        docker build -t ok:latest .
+        docker build -t lkpeto/tutoriel.dev:preview .
+        kubectl apply -f k8s/
