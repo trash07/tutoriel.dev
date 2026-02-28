@@ -22,9 +22,3 @@
         src: '{{ remote_folder }}/output.tar.bz2'
         dest: '{{ remote_folder }}/'
         remote_src: yes
-    - name: Build image
-      community.docker.docker_image:
-        name: lkpeto/tutoriel.dev
-        path: '{{ remote_folder }}'
-        tag: preview
-        rebuild: always
