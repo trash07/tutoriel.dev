@@ -12,11 +12,13 @@
       ansible.builtin.fetch:
         src: '{{ remote_folder }}/artifact.tar.bz2'
         dest: '{{ current_directory }}/'
+        flat: true
       register: fetch_result
     - name: Debug fetch result
       ansible.builtin.debug:
-        var: fetch_result
-
+        var: |
+          File saved to: {{ fetch_result.dest }}
+          Original remote path: {{ fetch_result.src }}
 #    - name: Extract artifact
 #      ansible.builtin.unarchive:
 #        src: '{{ current_directory }}/artifact.tar.bz2'
