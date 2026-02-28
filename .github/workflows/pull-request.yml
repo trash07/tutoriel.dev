@@ -53,7 +53,7 @@ jobs:
         with:
           files: '["ci/k8s/*.yml"]'
         env:
-          ENV: preview
+          ENV: ${{ vars.ENV }}
           HOST: ${{ vars.HOST }}
       - name: Check replacements
         run: cat ci/k8s/*.yml
