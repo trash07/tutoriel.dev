@@ -60,7 +60,7 @@ jobs:
       - name: Build and compress output
         run: |
           set -x
-          mkdir output
+          mkdir -p output/{k8s,public}
           cp -fr ci/k8s/*.yml output/k8s
           cp -fr public/* output/public
           cp -f ci/Dockerfile output/Dockerfile
