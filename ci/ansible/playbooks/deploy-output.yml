@@ -24,5 +24,7 @@
         remote_src: yes
     - name: Build image
       community.docker.docker_image:
-        name: lkpeto/tutoriel.dev:preview
+        name: lkpeto/tutoriel.dev
         path: '{{ remote_folder }}'
+        tag: preview
+        rebuild: always
