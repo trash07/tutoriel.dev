@@ -45,5 +45,7 @@ jobs:
           REMOTE_FOLDER: '/home/github/dev/artifact/${{ github.repository }}/pull-request'
         run: |
           sshpass -p "${{ secrets.ANSIBLE_PASS }}" scp -r -o "StrictHostKeyChecking=no" "${{secrets.ANSIBLE_USER}}"@tutoriel.dev:"${REMOTE_FOLDER}/artifact.tar.bz2" .
+      - name: Extract
+        run: tar -xjf artifact.tar.bz2
       - name: List
         run: ls -la
