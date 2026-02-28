@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        app: tutoriel
+        app: tutoriel-#{ENV}#
         env: #{ENV}#
     spec:
       containers:
