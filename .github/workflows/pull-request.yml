@@ -51,4 +51,4 @@ jobs:
             --extra-vars="ansible_user=${{ secrets.ANSIBLE_USER }} ansible_password=${{ secrets.ANSIBLE_PASS }} current_directory=$(pwd) \
             remote_folder=${REMOTE_FOLDER}"
       - name: List
-        run: ls -la tutoriel.dev
+        run: ls -laR .
