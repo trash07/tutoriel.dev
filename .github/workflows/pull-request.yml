@@ -36,10 +36,12 @@ jobs:
   deploy-to-preview:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: dev
     steps:
       - name: Deploy to preview environment
         env:
           REMOTE_FOLDER: '/home/github/dev/artifact/${{ github.repository }}/pull-request'
         run: |
           set -x
-          ls -l
+          echo "Host: ${{vars.HOST}}"
