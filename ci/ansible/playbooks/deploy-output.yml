@@ -1,2 +1,25 @@
 ---
-# todo: deploy to preview environment
+- name: Copy output
+  become: false
+  hosts: servers
+  gather_facts: false
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    remote_folder: null # provided in param
+    current_directory: null # provided in param
+  tasks:
+    - name: Create folder
+      ansible.builtin.file:
+        path: '{{ remote_folder }}'
+        state: directory
+        mode: '0755'
+    - name: Upload
+      ansible.builtin.copy:
+        src: '{{ current_directory }}/output.tar.bz2'
+        dest: '{{ remote_folder }}/output.tar.bz2'
+    - name: Extract
+      ansible.builtin.unarchive:
+        src: '{{ remote_folder }}/output.tar.bz2'
+        dest: '{{ remote_folder }}/'
+        remote_src: yes
+        remove: yes

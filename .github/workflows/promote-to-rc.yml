@@ -1,9 +1,5 @@
 name: 2 | Promote to RC
 on:
-  push:
-    branches:
-      - master
-      - hotfix/*
   workflow_dispatch:
 jobs:
   build:
