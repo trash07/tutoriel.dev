@@ -1,6 +1,6 @@
-FROM node:22-alpine
-COPY ./public /app
-WORKDIR /app
-EXPOSE 9000
-RUN npm install -g gatsby-cli
-ENTRYPOINT ["gatsby", "serve", "."]
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./public .
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
