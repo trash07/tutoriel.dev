@@ -1,1 +1,20 @@
 ---
+- name: Download artifact
+  become: false
+  hosts: servers
+  gather_facts: false
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    remote_folder: null # provided in param
+    current_directory: null # provided in param
+  tasks:
+    - name: Download
+      ansible.builtin.fetch:
+        src: '{{ remote_folder }}/artifact.tar.bz2'
+        dest: '{{ current_directory }}/artifact.tar.bz2'
+    - name: Extract artifact
+      ansible.builtin.unarchive:
+        src: '{{ current_directory }}/artifact.tar.bz2'
+        dest: '{{ current_directory }}'
+        remote_src: false
+        remove: true

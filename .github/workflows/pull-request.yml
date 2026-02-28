@@ -40,9 +40,14 @@ jobs:
       name: preview
       url: https://${{ vars.HOST }}
     steps:
-      - name: Deploy to preview environment
+      - name: Download artifact
         env:
           REMOTE_FOLDER: '/home/github/dev/artifact/${{ github.repository }}/pull-request'
         run: |
           set -x
-          echo "Host: ${{vars.HOST}}"
+          ansible-playbook -i ci/ansible/inventory.ini \
+            ci/ansible/playbooks/download-artifact.yml \
+            --extra-vars="ansible_user=${{ secrets.ANSIBLE_USER }} ansible_password=${{ secrets.ANSIBLE_PASS }} current_directory=$(pwd) \
+            remote_folder=${REMOTE_FOLDER}"
+      - name: List
+        run: ls -la
