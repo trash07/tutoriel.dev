@@ -22,4 +22,3 @@
         src: '{{ remote_folder }}/output.tar.bz2'
         dest: '{{ remote_folder }}/'
         remote_src: yes
-        remove: yes
