@@ -11,10 +11,10 @@
     - name: Download
       ansible.builtin.fetch:
         src: '{{ remote_folder }}/artifact.tar.bz2'
-        dest: '{{ current_directory }}/artifact.tar.bz2'
-    - name: Extract artifact
-      ansible.builtin.unarchive:
-        src: '{{ current_directory }}/artifact.tar.bz2'
-        dest: '{{ current_directory }}'
-        remote_src: false
-        remove: true
+        dest: '{{ current_directory }}/'
+#    - name: Extract artifact
+#      ansible.builtin.unarchive:
+#        src: '{{ current_directory }}/artifact.tar.bz2'
+#        dest: '{{ current_directory }}'
+#        remote_src: false
+#        remove: true
