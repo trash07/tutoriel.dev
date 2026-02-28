@@ -7,7 +7,7 @@ metadata:
 spec:
   tls:
     - hosts:
-        - #{HOST}#
+        -  #{HOST}#
       secretName: tutoriel-ingress-tls-#{ENV}#
   rules:
     - host: #{HOST}#
