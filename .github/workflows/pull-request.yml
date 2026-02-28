@@ -64,4 +64,4 @@ jobs:
           cp -fr ci/k8s/*.yml output/k8s
           cp -fr public/* output/public
           cp -f ci/Dockerfile output/Dockerfile
-          ls -laR output
+          tar -cjf output.tar.bz2 -C output .
