@@ -17,11 +17,5 @@
     - name: Output results
       ansible.builtin.debug:
         msg:
-          - 'File saved to: {{ fetch_result.dest }}'
-          - 'Original remote path: {{ fetch_result.file }}'
-#    - name: Extract artifact
-#      ansible.builtin.unarchive:
-#        src: '{{ current_directory }}/artifact.tar.bz2'
-#        dest: '{{ current_directory }}'
-#        remote_src: false
-#        remove: true
+          - 'File saved to -> {{ fetch_result.dest }}'
+          - 'Original remote path -> {{ fetch_result.file }}'
