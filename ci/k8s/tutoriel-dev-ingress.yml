@@ -1,22 +1,22 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: tutoriel-dev-ingress
+  name: tutoriel-ingress-#{ENV}#
   annotations:
     cert-manager.io/cluster-issuer: lets-encrypt
 spec:
   tls:
     - hosts:
-        - tutoriel.dev
-      secretName: tutoriel-dev-ingress-tls
+        - #{HOST}#
+      secretName: tutoriel-ingress-tls-#{ENV}#
   rules:
-    - host: tutoriel.dev
+    - host: #{HOST}#
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: tutoriel-dev-service
+                name: tutoriel-service-#{ENV}#
                 port:
                   number: 80
