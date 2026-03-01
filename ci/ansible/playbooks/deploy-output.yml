@@ -27,3 +27,7 @@
         set -x
         cd {{ remote_folder }};
         sudo microk8s kubectl apply -f k8s/
+    - name: Clean up
+      ansible.builtin.file:
+        path: '{{ remote_folder }}/*'
+        state: absent
