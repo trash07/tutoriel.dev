@@ -54,4 +54,4 @@ jobs:
           ansible-playbook -i ci/ansible/inventory.ini \
             ci/ansible/playbooks/deploy-output.yml \
             --extra-vars="ansible_user=${{ secrets.ANSIBLE_USER }} ansible_password=${{ secrets.ANSIBLE_PASS }} current_directory=$(pwd) \
-            remote_folder=${REMOTE_FOLDER}"
+            remote_folder=${REMOTE_FOLDER} env=${{ vars.ENV }}"
