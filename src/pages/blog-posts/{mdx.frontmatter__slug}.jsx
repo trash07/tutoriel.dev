@@ -1,9 +1,15 @@
 import * as React from 'react';
 import { PostLayout } from '../../components/PostLayout';
+import { PostSeo } from '../../components/PostSeo';
 
 export const Head = ({ pageContext }) => {
   const { frontmatter } = pageContext;
-  return <title>{frontmatter.title}</title>;
+  return (
+    <>
+      <title>{frontmatter.title}</title>
+      <PostSeo frontmatter={frontmatter} />
+    </>
+  );
 };
 
 export default function PostPage({ pageContext, children }) {
