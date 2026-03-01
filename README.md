@@ -17,7 +17,7 @@ Contributions are welcome. Clone the repo, shape your thoughts as posts and subm
 
 ### Credits
 
-This project us proudly build with:
+Proudly built with:
 
 - [GatsbyJS](https://www.gatsbyjs.com/)
 - [MDX](https://mdxjs.com/)
