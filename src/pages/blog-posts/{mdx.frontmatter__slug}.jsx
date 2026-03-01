@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PostLayout } from '../../components/PostLayout';
 import { PostSeo } from '../../components/PostSeo';
 
-export const Head = ({ pageContext }) => {
+export function Head({ pageContext }) {
   const { frontmatter } = pageContext;
   return (
     <>
@@ -10,7 +10,7 @@ export const Head = ({ pageContext }) => {
       <PostSeo frontmatter={frontmatter} />
     </>
   );
-};
+}
 
 export default function PostPage({ pageContext, children }) {
   const { frontmatter } = pageContext;
