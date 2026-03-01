@@ -1,0 +1,33 @@
+---
+- name: Compress build artifacts
+  become: false
+  hosts: gha
+  gather_facts: false
+  vars:
+    current_directory: null # provided in param
+  tasks:
+    - name: Compress
+      community.general.archive:
+        path:
+          - '{{ current_directory }}/ci/*'
+          - '{{ current_directory }}/public/*'
+        dest: '{{ current_directory }}/artifact.tar.bz2'
+        format: bz2
+
+- name: Save artifact
+  become: false
+  hosts: servers
+  gather_facts: false
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    remote_folder: null # provided in param
+  tasks:
+    - name: Create remote folder
+      ansible.builtin.file:
+        path: '{{ remote_folder }}'
+        state: directory
+        mode: '0755'
+    - name: Upload artifact
+      ansible.builtin.copy:
+        src: '{{ current_directory }}/artifact.tar.bz2'
+        dest: '{{ remote_folder }}/artifact.tar.bz2'
