@@ -7,6 +7,11 @@ export function PostOgpSeo({ frontmatter }) {
       <meta property="og:type" content="article" />
       <meta property="article:published_time" content={frontmatter.date} />
       <meta property="article:author" content={frontmatter.author} />
+      <meta
+        property="og:image"
+        content="https://html.sammy-codes.com/images/large-profile.jpg"
+      />
+      <meta property="og:description" content="A one sentence description" />
     </>
   );
 }
