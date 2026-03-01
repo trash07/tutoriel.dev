@@ -1,7 +1,12 @@
 import * as React from 'react';
+import { PostLayout } from '../../components/PostLayout';
 
-const PostPage = (props) => {
-  return <>{props.children}</>;
+export const Head = ({ pageContext }) => {
+  const { frontmatter } = pageContext;
+  return <title>{frontmatter.title}</title>;
 };
 
-export default PostPage;
+export default function PostPage({ pageContext, children }) {
+  const { frontmatter } = pageContext;
+  return <PostLayout title={frontmatter.title}>{children}</PostLayout>;
+}
