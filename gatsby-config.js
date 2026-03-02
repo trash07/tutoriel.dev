@@ -38,6 +38,13 @@ module.exports = {
               noInlineHighlight: false,
             },
           },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+              sourceInstanceName: 'mdx',
+            },
+          },
         ],
       },
     },
