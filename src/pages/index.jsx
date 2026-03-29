@@ -1,60 +1,73 @@
 import * as React from 'react';
 import IndexLayout from '../components/layout/IndexLayout';
+import { graphql, Link } from 'gatsby';
+import { generateBlogPostUrl } from '../components/utils/url-generator';
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const posts = data?.allMdx?.nodes;
   return (
     <IndexLayout>
       <div className="hero">
-        <div className="hero-label">Learn by doing</div>
+        <div className="hero-label">Share understanding</div>
         <h1>
-          Dev tutorials,
+          Partager la
           <br />
-          straight to the point.
+          compréhension de sujets
         </h1>
         <p>
-          Practical guides on web development, tools, and best practices —
-          written for developers who value their time.
+          Jardin digital en construction pour partager des idees et reflexions
+          techniques. — Je publie de temps en temps quand libre. Contactez-moi
+          pour poster et animer ce site communautaire pour tous.
         </p>
       </div>
 
       <div className="list">
-        <div className="tutorial-item">
-          <h2>
-            <a>Building a REST API with Node.js and Express</a>
-          </h2>
-          <div className="meta">Published at March 18, 2026</div>
-          <div className="tags">
-            <span className="tag">Node.js</span>
-            <span className="tag">Express</span>
-            <span className="tag">REST API</span>
-          </div>
-        </div>
-
-        <div className="tutorial-item">
-          <h2>
-            <a>Getting started with TypeScript generics</a>
-          </h2>
-          <div className="meta">Published at March 10, 2026</div>
-          <div className="tags">
-            <span className="tag">TypeScript</span>
-            <span className="tag">JavaScript</span>
-          </div>
-        </div>
-
-        <div className="tutorial-item">
-          <h2>
-            <a>Docker for front-end developers</a>
-          </h2>
-          <div className="meta">Published at February 28, 2026</div>
-          <div className="tags">
-            <span className="tag">Docker</span>
-          </div>
-        </div>
+        {posts.map((post, index) => (
+          <PostDatails key={index} pos={post} />
+        ))}
       </div>
     </IndexLayout>
   );
 };
 
-export default IndexPage;
+function PostDatails(post) {
+  const { frontmatter } = post.pos;
 
-export const Head = () => <title>Home Page</title>;
+  return (
+    <div className="tutorial-item">
+      <h2>
+        <Link to={generateBlogPostUrl(frontmatter.slug)}>
+          {frontmatter.title}
+        </Link>
+      </h2>
+      <div className="meta">Publié le {frontmatter.dateFormatted}</div>
+      <div className="tags">
+        {frontmatter.tags.map((tag, index) => (
+          <span className="tag" key={index}>
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export const Head = () => <title>Bienvenue - tutoriel.dev</title>;
+
+export const query = graphql`
+  query LatestPosts($limit: Int = 10) {
+    allMdx(sort: { frontmatter: { date: DESC } }, limit: $limit) {
+      nodes {
+        frontmatter {
+          title
+          date
+          dateFormatted: date(formatString: "D MMMM, YYYY", locale: "fr")
+          tags
+          slug
+        }
+      }
+    }
+  }
+`;
+
+export default IndexPage;

@@ -33,7 +33,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-copy">
-          © 2026 tutoriel.dev — All rights reserved.
+          &copy; 2026 tutoriel.dev — All rights reserved.
         </div>
       </div>
     </footer>
