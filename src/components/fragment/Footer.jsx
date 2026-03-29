@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { getSiteUrl } from '../utils/url-generator';
 
 export default function Footer() {
   return (
@@ -6,11 +7,11 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-top">
           <div className="footer-brand">
-            <a className="logo" href="#">
+            <a className="logo" href={getSiteUrl()}>
               tutoriel<span>.dev</span>
             </a>
             <div className="search-wrap">
-              <input type="text" placeholder="Search tutorials…" />
+              <input type="text" placeholder="Rechercher" />
               <button>Go</button>
             </div>
           </div>
