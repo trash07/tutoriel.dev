@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PostLayout } from '../../components/PostLayout';
-import { PostSeo } from '../../components/PostSeo';
+import { PostLayout } from '../../components/layout/PostLayout';
+import { PostSeo } from '../../components/seo/PostSeo';
 
 export function Head({ pageContext }) {
   const { frontmatter } = pageContext;
