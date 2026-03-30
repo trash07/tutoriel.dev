@@ -10,7 +10,7 @@ const IndexPage = ({ data }) => {
       <div className="hero">
         <div className="hero-label">Share understanding</div>
         <h1>
-          Partager la
+          Cibler la
           <br />
           compréhension de sujets
         </h1>
