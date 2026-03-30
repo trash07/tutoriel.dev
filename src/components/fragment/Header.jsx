@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { getSiteUrl } from '../utils/url-generator';
 
 export default function Header() {
   return (
     <nav>
       <div className="nav-inner">
-        <a className="logo" href="#">
+        <a className="logo" href={getSiteUrl()}>
           tutoriel<span>.dev</span>
         </a>
         <div className="nav-links">
