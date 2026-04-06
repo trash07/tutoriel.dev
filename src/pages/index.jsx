@@ -23,14 +23,14 @@ const IndexPage = ({ data }) => {
 
       <div className="list">
         {posts.map((post, index) => (
-          <PostDatails key={index} pos={post} />
+          <PostDetails key={index} pos={post} />
         ))}
       </div>
     </IndexLayout>
   );
 };
 
-function PostDatails(post) {
+function PostDetails(post) {
   const { frontmatter } = post.pos;
 
   return (
