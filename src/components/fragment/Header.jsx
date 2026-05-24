@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'gatsby';
 import { getSiteUrl } from '../utils/url-generator';
 
 export default function Header() {
@@ -9,9 +10,9 @@ export default function Header() {
           tutoriel<span>.dev</span>
         </a>
         <div className="nav-links">
-          <a href="#">Tutorials</a>
-          <a href="#">Topics</a>
-          <a href="#">About</a>
+          <Link to="/tutorials">Tutorials</Link>
+          <Link to="/topics">Topics</Link>
+          <Link to="/about">About</Link>
         </div>
         <button className="hamburger" id="hamburger" aria-label="Menu">
           <span></span>
@@ -20,9 +21,9 @@ export default function Header() {
         </button>
       </div>
       <div className="mobile-menu" id="mobile-menu">
-        <a href="#">Tutorials</a>
-        <a href="#">Topics</a>
-        <a href="#">About</a>
+        <Link to="/tutorials">Tutorials</Link>
+        <Link to="/topics">Topics</Link>
+        <Link to="/about">About</Link>
       </div>
     </nav>
   );
