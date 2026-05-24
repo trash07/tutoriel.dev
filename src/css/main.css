@@ -234,6 +234,24 @@ nav {
   color: var(--tag3t);
 }
 
+/* ── TOPICS ── */
+.topics-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.topic-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.topic-count {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
 /* ── FOOTER ── */
 footer {
   background: var(--surface);
